@@ -94,9 +94,23 @@ function loadCategories() {
 
 // Verificar si una categoría tiene preguntas disponibles
 function checkIfCategoryHasQuestions(categoryId) {
-    // Verificar si existe la variable global con las preguntas de esta categoría
-    const variableName = `questions_${categoryId}`;
-    return typeof window[variableName] !== 'undefined';
+    // Las variables de preguntas están declaradas con const, no aparecen como propiedades de window.
+    // Usamos eval seguro controlado para verificar existencia.
+    try {
+        // Construir el nombre y evaluar.
+        return typeof eval(`questions_${categoryId}`) !== 'undefined';
+    } catch (e) {
+        return false;
+    }
+}
+
+// Helper para obtener el array de preguntas por categoría (maneja const no expuesto en window)
+function getQuestionsForCategory(categoryId) {
+    try {
+        return eval(`questions_${categoryId}`);
+    } catch (e) {
+        return undefined;
+    }
 }
 
 // Actualizar las categorías seleccionadas
@@ -162,10 +176,8 @@ function prepareQuestions(count, difficulty) {
     
     // Recopilar preguntas de las categorías seleccionadas
     selectedCategories.forEach(categoryId => {
-        const questionsVariable = `questions_${categoryId}`;
-        
-        if (typeof window[questionsVariable] !== 'undefined') {
-            const categoryQuestions = window[questionsVariable];
+    const categoryQuestions = getQuestionsForCategory(categoryId);
+    if (categoryQuestions) {
             
             // Filtrar por dificultad si es necesario
             const filteredQuestions = difficulty === 'all' 
