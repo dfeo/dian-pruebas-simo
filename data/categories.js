@@ -36,6 +36,11 @@ const categories = [
         description: "Preguntas sobre conceptos, detección y control de evasión, elusión fiscal y contrabando."
     },
     {
+        id: "transparencia",
+        name: "Ley de Transparencia",
+        description: "Preguntas sobre Ley 1712 de 2014, acceso a la información pública y gestión de la transparencia."
+    },
+    {
         id: "herramientas_informaticas",
         name: "Herramientas Informáticas",
         description: "Preguntas sobre uso de tecnologías, sistemas de información y herramientas digitales."
@@ -114,5 +119,11 @@ const categories = [
         id: "fiscalizacion_aduanera",
         name: "Fiscalización Aduanera",
         description: "Preguntas específicas sobre fiscalización de operaciones aduaneras."
+    }
+    ,
+    {
+        id: "procedimiento_administrativo",
+        name: "Procedimiento Administrativo (Ley 1437)",
+        description: "Preguntas sobre CPACA: actuaciones, notificaciones, recursos y debido proceso administrativo."
     }
 ];
